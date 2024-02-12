@@ -12,10 +12,21 @@ public class ArrayListTest
 {
 
     private ArrayList<Integer> emptyList;
+    private ArrayList<Integer> singletonList;
+    private ArrayList<Integer> fewList;
 
     @BeforeEach
     public void setUp() {
         emptyList = new ArrayList<>();
+
+        singletonList = new ArrayList<>();
+        singletonList.addToBack(1);
+
+        fewList = new ArrayList<>();
+        fewList.addToBack(1);
+        fewList.addToBack(2);
+        fewList.addToBack(3);
+
     }
     
     /**
@@ -24,6 +35,18 @@ public class ArrayListTest
     @Test
     public void emptyArrayListShouldHaveSizeZero()
     {
-        assertEquals( 0, emptyList.size(), "Empty list should have a size of 0" );
+        assertEquals( 0, emptyList.size(), "Empty ArrayList should have a size of 0" );
+    }
+
+    @Test
+    public void singletonArrayListShouldHaveSizeOne()
+    {
+        assertEquals( 1, singletonList.size(), "Singleton ArrayList should have a size of 1" );
+    }
+
+    @Test
+    public void fewArrayListShouldHaveSizeThree()
+    {
+        assertEquals( 3, fewList.size(), "few ArrayList should have a size of 3" );
     }
 }
