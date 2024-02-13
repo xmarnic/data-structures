@@ -2,6 +2,9 @@ package in.nickmarl;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -48,5 +51,29 @@ public class ArrayListTest
     public void fewArrayListShouldHaveSizeThree()
     {
         assertEquals( 3, fewList.size(), "few ArrayList should have a size of 3" );
+    }
+
+    @Test
+    void emptyListShouldIterateCorrectly() {
+        Iterator<Integer> iter = emptyList.iterator();
+        assertFalse(iter.hasNext());
+        assertThrows(NoSuchElementException.class, iter::next, "Calling next when hasNext is False should throw NoSuchElementException.");
+    }
+
+    @Test
+    void fewArrayListShouldIterateCorrectly() {
+        Iterator<Integer> iter = fewList.iterator();
+
+        assertTrue(iter.hasNext());
+        assertEquals(1, iter.next());
+
+        assertTrue(iter.hasNext());
+        assertEquals(2, iter.next());
+
+        assertTrue(iter.hasNext());
+        assertEquals(3, iter.next());
+
+        assertFalse(iter.hasNext());
+        assertThrows(NoSuchElementException.class, iter::next, "Calling next when hasNext is False should throw NoSuchElementException.");
     }
 }

@@ -1,11 +1,12 @@
 package in.nickmarl;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
  * An implementation of an ArrayList.
  */
-public class ArrayList<T> {
+public class ArrayList<T> implements Iterable<T> {
 
     /*
      * The initial capacity of the ArrayList.
@@ -150,4 +151,25 @@ public class ArrayList<T> {
     public int size() {
         return size;
     }
+
+    private class ALIterator implements Iterator<T> {
+        private int cur;
+
+        public ALIterator() { cur = 0; }
+
+        @Override
+        public boolean hasNext() { return cur < size; }
+
+        @Override
+        public T next() {
+            if (hasNext()) {
+                return backingArray[cur++];
+            }
+            throw new NoSuchElementException();
+        }
+
+    }
+
+    @Override
+    public Iterator<T> iterator() { return new ALIterator(); }
 }
