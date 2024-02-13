@@ -1,11 +1,22 @@
 package in.nickmarl;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
-public class LinkedList<T> {
+/**
+ * An implementation of singly linked-list.
+ * 
+ * @param <T> the type of elements stored in the list
+ */
+public class LinkedList<T> implements Iterable<T> {
     private int size;
     private Node<T> head;
     private Node<T> tail;
 
+    /**
+     * Represents a node in a singly linked-list.
+     * @param <T> the type of data stored in the node
+     */
     private static class Node<T> {
         private T data;
         private Node<T> next;
@@ -30,10 +41,17 @@ public class LinkedList<T> {
      * Time Complexity: O(1)
      * 
      * @param data
-     * @throws UnsupportedOperationException
      */
-    public void addToFront(T data) throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Not yet implemented.");
+    public void addToFront(T data) {
+        Node<T> newNode = new Node<T>(data);
+        if (size == 0) {
+            head = newNode;
+            tail = newNode;
+        } else {
+            newNode.next = head;
+            head = newNode;
+        }
+        size++;
     }
 
     /**
@@ -41,10 +59,17 @@ public class LinkedList<T> {
      * 
      * Time Complexity: O(1)
      * @param data
-     * @throws UnsupportedOperationException
      */
-    public void addToBack(T data) throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Not yet implemented.");
+    public void addToBack(T data) {
+        Node<T> newNode = new Node<T>(data);
+        if (size == 0) {
+            head = newNode;
+            tail = newNode;
+        } else {
+            tail.next = newNode;
+            tail = newNode;
+        }
+        size++;
     }
 
     /**
@@ -81,4 +106,26 @@ public class LinkedList<T> {
     public int size() {
         return size;
     }
+
+    private class LLIterator implements Iterator<T> {
+        private Node<T> cur;
+
+        LLIterator() { cur = head; }
+
+        @Override
+        public boolean hasNext() { return cur != null; }
+
+        @Override
+        public T next() {
+            if (hasNext()) {
+                T data = cur.data;
+                cur = cur.next;
+                return data;
+            }
+            throw new NoSuchElementException();
+        }
+    }
+
+    @Override
+    public Iterator<T> iterator() { return new LLIterator(); }
 }
