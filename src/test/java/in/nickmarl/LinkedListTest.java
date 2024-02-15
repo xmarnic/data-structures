@@ -98,4 +98,72 @@ public class LinkedListTest {
         assertTrue(iter.hasNext());
         assertEquals(ELEMENT1, iter.next());
     }
+
+    @Test
+    void removeFromFrontShouldThrowExceptionForEmptyList() {
+        assertThrows(NoSuchElementException.class, emptyList::removeFromFront,
+         "No element can be removed from an empty list.");
+    }
+
+    @Test
+    void removeFromFrontShouldRemoveFirstElementFromSingletonListToCreateAnEmptyList() {
+        final int returnValue = singletonList.removeFromFront();
+        assertEquals(ELEMENT1, returnValue);
+        assertEquals(0, singletonList.size());
+
+        Iterator<Integer> iter = singletonList.iterator();
+        assertFalse(iter.hasNext());
+    }
+
+    @Test
+    void removeFromFrontShouldRemoveFirstElementAndDecrementSizeOfFewList() {
+        final int returnValue = fewList.removeFromFront();
+        assertEquals(ELEMENT1, returnValue);
+        assertEquals(2, fewList.size());
+
+        Iterator<Integer> iter = fewList.iterator();
+        assertTrue(iter.hasNext());
+        assertEquals(ELEMENT2, iter.next());
+
+        assertTrue(iter.hasNext());
+        assertEquals(ELEMENT3, iter.next());
+
+        assertFalse(iter.hasNext());
+    }
+
+    @Test
+    void removeFromFrontShouldRemoveFirstAndSecondElementsWhenCalledTwiceOnFewList() {
+        final int returnValue1 = fewList.removeFromFront();
+        assertEquals(ELEMENT1, returnValue1);
+        assertEquals(2, fewList.size());
+
+        Iterator<Integer> iter = fewList.iterator();
+        assertTrue(iter.hasNext());
+        assertEquals(ELEMENT2, iter.next());
+
+        final int returnValue2 = fewList.removeFromFront();
+        assertEquals(ELEMENT2, returnValue2);
+        assertEquals(1, fewList.size());
+
+        assertTrue(iter.hasNext());
+        assertEquals(ELEMENT3, iter.next());
+
+        assertFalse(iter.hasNext());
+    }
+
+    @Test
+    void removeFromBackShouldThrowExceptionForEmptyList() {
+        assertThrows(NoSuchElementException.class, emptyList::removeFromBack,
+         "No element can be removed from an empty list.");
+    }
+
+    @Test
+    void removeFromBackShouldRemoveLastElementFromSingletonListToCreateAnEmptyList() {
+        final int returnValue = singletonList.removeFromBack();
+        assertEquals(ELEMENT1, returnValue);
+        assertEquals(0, singletonList.size());
+
+        Iterator<Integer> iter = singletonList.iterator();
+        assertFalse(iter.hasNext());
+    }
 }
