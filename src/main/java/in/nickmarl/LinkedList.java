@@ -43,6 +43,10 @@ public class LinkedList<T> implements Iterable<T> {
      * @param data
      */
     public void addToFront(T data) {
+        if (data == null) {
+            throw new IllegalArgumentException("A null element cannot be added to the list.");
+        }
+
         Node<T> newNode = new Node<T>(data);
         if (size == 0) {
             head = newNode;
@@ -61,6 +65,10 @@ public class LinkedList<T> implements Iterable<T> {
      * @param data
      */
     public void addToBack(T data) {
+        if (data == null) {
+            throw new IllegalArgumentException("A null element cannot be added to the list.");
+        }
+
         Node<T> newNode = new Node<T>(data);
         if (size == 0) {
             head = newNode;
@@ -78,10 +86,20 @@ public class LinkedList<T> implements Iterable<T> {
      * Time Complexity: O(1)
      * 
      * @return the removed element
-     * @throws UnsupportedOperationException
+     * @throws NoSuchElementException
      */
-    public T removeFromFront() throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Not yet implemented.");
+    public T removeFromFront() throws NoSuchElementException {
+        if (size == 0) {
+            throw new NoSuchElementException("An element cannot be removed from an empty list.");
+        }
+
+        T data = head.data;
+        head = head.next;
+        size--;
+        if (size < 2) {
+            tail = head;
+        }
+        return data;
     }
 
     /**
@@ -90,16 +108,37 @@ public class LinkedList<T> implements Iterable<T> {
      * Time Complexity: O(n)
      * 
      * @return the removed element
-     * @throws UnsupportedOperationException
+     * @throws NoSuchElementException
      */
-    public T removeFromBack() throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Not yet implemented.");
+    public T removeFromBack() throws NoSuchElementException {
+        if (size == 0) {
+            throw new NoSuchElementException("An element cannot be removed from an empty list.");
+        }
+
+        if (size == 1) {
+            T data = head.data;
+            head = null;
+            tail = null;
+            size--;
+            return data;
+        }
+
+        Node<T> cur = head;
+        while (cur.next.next != null) {
+            cur = cur.next;
+        }
+
+        T data = cur.next.data;
+        cur.next = null;
+        tail = cur;
+        size--;
+        return data;
     }
 
     /**
      * Returns the number of elements in the list.
      * 
-     * Time Complexity: O(n)
+     * Time Complexity: O(1)
      * 
      * @return the size of the list.
      */
