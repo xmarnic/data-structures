@@ -11,8 +11,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Unit testing suite for ArrayList.
  */
-public class ArrayListTest 
-{
+public class ArrayListTest {
 
     private ArrayList<Integer> emptyList;
     private ArrayList<Integer> singletonList;
@@ -31,33 +30,31 @@ public class ArrayListTest
         fewList.addToBack(3);
 
     }
-    
+
     /**
      * Rigorous Test :-)
      */
     @Test
-    public void emptyArrayListShouldHaveSizeZero()
-    {
-        assertEquals( 0, emptyList.size(), "Empty ArrayList should have a size of 0" );
+    public void emptyArrayListShouldHaveSizeZero() {
+        assertEquals(0, emptyList.size(), "Empty ArrayList should have a size of 0");
     }
 
     @Test
-    public void singletonArrayListShouldHaveSizeOne()
-    {
-        assertEquals( 1, singletonList.size(), "Singleton ArrayList should have a size of 1" );
+    public void singletonArrayListShouldHaveSizeOne() {
+        assertEquals(1, singletonList.size(), "Singleton ArrayList should have a size of 1");
     }
 
     @Test
-    public void fewArrayListShouldHaveSizeThree()
-    {
-        assertEquals( 3, fewList.size(), "few ArrayList should have a size of 3" );
+    public void fewArrayListShouldHaveSizeThree() {
+        assertEquals(3, fewList.size(), "few ArrayList should have a size of 3");
     }
 
     @Test
     void emptyListShouldIterateCorrectly() {
         Iterator<Integer> iter = emptyList.iterator();
         assertFalse(iter.hasNext());
-        assertThrows(NoSuchElementException.class, iter::next, "Calling next when hasNext is False should throw NoSuchElementException.");
+        assertThrows(NoSuchElementException.class, iter::next,
+                "Calling next when hasNext is False should throw NoSuchElementException.");
     }
 
     @Test
@@ -74,6 +71,7 @@ public class ArrayListTest
         assertEquals(3, iter.next());
 
         assertFalse(iter.hasNext());
-        assertThrows(NoSuchElementException.class, iter::next, "Calling next when hasNext is False should throw NoSuchElementException.");
+        assertThrows(NoSuchElementException.class, iter::next,
+                "Calling next when hasNext is False should throw NoSuchElementException.");
     }
 }

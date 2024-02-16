@@ -8,14 +8,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class LinkedListTest {
-    static final int ELEMENT1 = 1; 
-    static final int ELEMENT2 = 2; 
-    static final int ELEMENT3 = 3; 
+    static final int ELEMENT1 = 1;
+    static final int ELEMENT2 = 2;
+    static final int ELEMENT3 = 3;
 
     private LinkedList<Integer> emptyList;
     private LinkedList<Integer> singletonList;
@@ -53,7 +52,8 @@ public class LinkedListTest {
     void emptyListShouldIterateCorrectly() {
         Iterator<Integer> iter = emptyList.iterator();
         assertFalse(iter.hasNext());
-        assertThrows(NoSuchElementException.class, iter::next, "Calling next when hasNext is False should throw NoSuchElementException.");
+        assertThrows(NoSuchElementException.class, iter::next,
+                "Calling next when hasNext is False should throw NoSuchElementException.");
     }
 
     @Test
@@ -69,7 +69,8 @@ public class LinkedListTest {
         assertEquals(ELEMENT3, iter.next());
 
         assertFalse(iter.hasNext());
-        assertThrows(NoSuchElementException.class, iter::next, "Calling next when hasNext is False should throw NoSuchElementException.");
+        assertThrows(NoSuchElementException.class, iter::next,
+                "Calling next when hasNext is False should throw NoSuchElementException.");
     }
 
     @Test
@@ -102,7 +103,7 @@ public class LinkedListTest {
     @Test
     void removeFromFrontShouldThrowExceptionForEmptyList() {
         assertThrows(NoSuchElementException.class, emptyList::removeFromFront,
-         "No element can be removed from an empty list.");
+                "No element can be removed from an empty list.");
     }
 
     @Test
@@ -154,7 +155,7 @@ public class LinkedListTest {
     @Test
     void removeFromBackShouldThrowExceptionForEmptyList() {
         assertThrows(NoSuchElementException.class, emptyList::removeFromBack,
-         "No element can be removed from an empty list.");
+                "No element can be removed from an empty list.");
     }
 
     @Test
