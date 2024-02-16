@@ -6,7 +6,8 @@ import java.util.NoSuchElementException;
 /**
  * An implementation of singly linked-list.
  * 
- * @param <T> the type of elements stored in the list
+ * @param <T>
+ *        the type of elements stored in the list
  */
 public class LinkedList<T> implements Iterable<T> {
     private int size;
@@ -15,7 +16,9 @@ public class LinkedList<T> implements Iterable<T> {
 
     /**
      * Represents a node in a singly linked-list.
-     * @param <T> the type of data stored in the node
+     * 
+     * @param <T>
+     *        the type of data stored in the node
      */
     private static class Node<T> {
         private T data;
@@ -26,7 +29,9 @@ public class LinkedList<T> implements Iterable<T> {
             this.next = next;
         }
 
-        private Node(T data) { this(data, null); }
+        private Node(T data) {
+            this(data, null);
+        }
     }
 
     public LinkedList() {
@@ -37,7 +42,6 @@ public class LinkedList<T> implements Iterable<T> {
 
     /**
      * Add an element at the front of the list.
-     * 
      * Time Complexity: O(1)
      * 
      * @param data
@@ -60,8 +64,8 @@ public class LinkedList<T> implements Iterable<T> {
 
     /**
      * Add an element at the back of the list.
-     * 
      * Time Complexity: O(1)
+     * 
      * @param data
      */
     public void addToBack(T data) {
@@ -82,13 +86,12 @@ public class LinkedList<T> implements Iterable<T> {
 
     /**
      * Remove the first element from the list.
-     * 
      * Time Complexity: O(1)
      * 
      * @return the removed element
      * @throws NoSuchElementException
      */
-    public T removeFromFront() throws NoSuchElementException {
+    public T removeFromFront() {
         if (size == 0) {
             throw new NoSuchElementException("An element cannot be removed from an empty list.");
         }
@@ -104,13 +107,12 @@ public class LinkedList<T> implements Iterable<T> {
 
     /**
      * Remove the last element from the list.
-     * 
      * Time Complexity: O(n)
      * 
      * @return the removed element
      * @throws NoSuchElementException
      */
-    public T removeFromBack() throws NoSuchElementException {
+    public T removeFromBack() {
         if (size == 0) {
             throw new NoSuchElementException("An element cannot be removed from an empty list.");
         }
@@ -137,7 +139,6 @@ public class LinkedList<T> implements Iterable<T> {
 
     /**
      * Returns the number of elements in the list.
-     * 
      * Time Complexity: O(1)
      * 
      * @return the size of the list.
@@ -149,10 +150,14 @@ public class LinkedList<T> implements Iterable<T> {
     private class LLIterator implements Iterator<T> {
         private Node<T> cur;
 
-        LLIterator() { cur = head; }
+        LLIterator() {
+            cur = head;
+        }
 
         @Override
-        public boolean hasNext() { return cur != null; }
+        public boolean hasNext() {
+            return cur != null;
+        }
 
         @Override
         public T next() {
@@ -166,5 +171,7 @@ public class LinkedList<T> implements Iterable<T> {
     }
 
     @Override
-    public Iterator<T> iterator() { return new LLIterator(); }
+    public Iterator<T> iterator() {
+        return new LLIterator();
+    }
 }
